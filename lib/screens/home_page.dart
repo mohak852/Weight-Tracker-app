@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: <Widget>[
               FlutterLogo(
-                style: FlutterLogoStyle.horizontal,
+                style: FlutterLogoStyle.stacked,
                 size: 350.0,
               ),
               SizedBox(height: 100.0,),
@@ -46,7 +46,11 @@ class _HomePageState extends State<HomePage> {
                   signIn();
                 },
                   child: Container(
+                    height: 50.0,
+                    width: 350.0,
                     decoration: BoxDecoration(
+                      color: Colors.black,
+                        borderRadius: BorderRadius.circular(20.0),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
@@ -56,7 +60,11 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                     ),
-                      child: Image.asset('assets/download.png'),
+                      child:Center(child: Text("Sign In With Google",style: TextStyle(
+                        fontSize: 25.0,
+                        fontFamily: 'DMMono',
+                        color: Colors.teal,
+                      ),),),
                   ),
               ),
             ],

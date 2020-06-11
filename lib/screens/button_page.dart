@@ -3,7 +3,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
+import 'package:weighttrackerapp/Services/authSerive.dart';
 import 'package:weighttrackerapp/model/db_helper.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:intl/intl.dart';
+import 'main_page.dart';
 class ButtonPage extends StatefulWidget {
   @override
   _ButtonPageState createState() => _ButtonPageState();
@@ -16,6 +20,7 @@ class _ButtonPageState extends State<ButtonPage> with SingleTickerProviderStateM
   int currentIntValue = 0;
   DateTime selectedDate = DateTime.now();
   NumberPicker integerNumberPicker;
+  final AuthService _authService = AuthService();
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
         context: context,
@@ -27,6 +32,16 @@ class _ButtonPageState extends State<ButtonPage> with SingleTickerProviderStateM
         selectedDate = picked;
       });
   }
+  void savingGoal() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt('intGoalValue', currentGoalValue);
+    print("the goal is saved " + currentGoalValue.toString());
+  }
+  void savingWeight() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt('intWeightValue', currentIntValue);
+  }
+
   Future _showIntDialog() async {
     await showDialog<int>(
       context: context,
@@ -46,7 +61,6 @@ class _ButtonPageState extends State<ButtonPage> with SingleTickerProviderStateM
     ).then((num value) {
       if (value != null) {
         setState(() => currentIntValue = value);
-        integerNumberPicker.animateInt(value);
       }
     });
   }
@@ -70,13 +84,14 @@ class _ButtonPageState extends State<ButtonPage> with SingleTickerProviderStateM
     ).then((num value) {
       if (value != null) {
         setState(() => currentGoalValue = value);
-        integerNumberPicker.animateInt(value);
+        
       }
     });
   }
 
   final dbHelper = DatabaseHelper.instance;
-  
+  var now = new DateTime.now();
+
   final firebaseDatabase  = Firestore.instance;
   void _saveButtonClk() async {
     Map<String, dynamic> row = {
@@ -85,8 +100,10 @@ class _ButtonPageState extends State<ButtonPage> with SingleTickerProviderStateM
       DatabaseHelper.columnGoal: currentGoalValue, 
     };
     final id = await dbHelper.insert(row);
+    print(new DateFormat("dd-MM-yyyy").format(now));
+    final String userName = await _authService.getUserName();
+    Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>MainPage(text: userName)));
     print("Inserted Record id: $id");
-    Navigator.of(context).popAndPushNamed("/HomePage");
   }
   @override
   Widget build(BuildContext context) {
@@ -197,6 +214,8 @@ class _ButtonPageState extends State<ButtonPage> with SingleTickerProviderStateM
                           FlatButton(
                             onPressed: (){
                               _saveButtonClk();
+                              savingGoal();
+                              savingWeight();
                               print("Save button Presed");
                             },
                             child: Text("Save",style: TextStyle(
