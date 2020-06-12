@@ -43,6 +43,7 @@ dependencies:
   flutter_sparkline: ^0.1.0
   fl_chart:
   percent_indicator: ^2.1.4
+  flutter_colorpicker: ^0.3.4
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -61,6 +62,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - assets/calender/
+    - assets/arrows/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

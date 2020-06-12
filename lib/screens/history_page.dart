@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../model/db_helper.dart';
+import 'package:intl/intl.dart';
 
 class HistoryPage extends StatefulWidget {
   @override
@@ -58,11 +59,15 @@ class _HistoryPageState extends State<HistoryPage> {
             print("========================");
             bool firstWeight = indice == 0;
             double difference = firstWeight?0.0:weightList[indice]["weight"] - weightList[indice-1]["weight"];
+            String calender = DateFormat.d().format(parsedTime);
+            print("+++++++++++++++++++++++++++");
+            print(calender);
+            //change/initial*100
             return Column(
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.all(20.0),
-                  height: 150.0,
+                  height: 125.0,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: Colors.black,
@@ -73,29 +78,50 @@ class _HistoryPageState extends State<HistoryPage> {
                       spreadRadius: 2.0,
                     )],
                   ),
-                  child: Column(
+                  child: Row(
                     children: <Widget>[
-                      Text("Goal: " + goal,style: TextStyle(
-                        fontFamily: 'DMMono',
-                        fontWeight: FontWeight.normal,
-                        color: Colors.teal,
-                      ),),
-                      SizedBox(height: 5.0,),
-                      Text("Weight: " + weight,style: TextStyle(
-                        fontFamily: 'DMMono',
-                        fontWeight: FontWeight.normal,
-                        color: Colors.teal,
-                      ),),
-                      Text("Date: " + parsedTime.toString(),style: TextStyle(
-                        fontFamily: 'DMMono',
-                        fontWeight: FontWeight.normal,
-                        color: Colors.teal,
-                      ),),
-                     Text("WeightDifference: " +  difference.toString(),style: TextStyle(
-                        fontFamily: 'DMMono',
-                        fontWeight: FontWeight.normal,
-                        color: Colors.teal,
-                      ),)
+                      Image.asset("assets/calender/$calender.jpg"),
+                      SizedBox(width: 20.0,),
+                      Container(
+                        child: Column(
+                          children: <Widget>[
+                            Text("Goal: " + goal,style: TextStyle(
+                              fontFamily: 'DMMono',
+                              fontWeight: FontWeight.normal,
+                              color: Colors.teal,
+                            ),),
+                            SizedBox(height: 5.0,),
+                            Text("Weight: " + weight,style: TextStyle(
+                              fontFamily: 'DMMono',
+                              fontWeight: FontWeight.normal,
+                              color: Colors.teal,
+                            ),),
+                            Text("Date: " + DateFormat.yMMMMd().format(parsedTime),style: TextStyle(
+                              fontFamily: 'DMMono',
+                              fontWeight: FontWeight.normal,
+                              color: Colors.teal,
+                              
+                            ),),
+                            
+                           Row(
+                             children: <Widget>[
+                               difference>0?
+                               Icon(Icons.arrow_upward,color: Colors.teal,size: 25.0,):
+                               Icon(Icons.arrow_downward,color: Colors.teal,size: 25.0),
+                               difference<0?Text((difference*-1).toString(),style: TextStyle(
+                                  fontFamily: 'DMMono',
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.teal,
+                                ),):Text(difference.toString(),style: TextStyle(
+                                  fontFamily: 'DMMono',
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.teal,
+                                ),)
+                             ],
+                           )
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),

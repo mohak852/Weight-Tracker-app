@@ -145,7 +145,7 @@ class _MainPageState extends State<MainPage> {
                   children: <Widget>[
                     Column(
                       children: <Widget>[
-                        Text(intValue.toString()!=null?intValue.toString():0,style: TextStyle(
+                        Text(intValue.toString()!=null?intValue.toString():0.toString(),style: TextStyle(
                           fontFamily: 'DMMono',
                           fontSize: 20.0,
                           fontWeight: FontWeight.normal,
@@ -168,7 +168,7 @@ class _MainPageState extends State<MainPage> {
                       ),),
                     Column(
                       children: <Widget>[
-                        Text(goalValue.toString()!=null?goalValue.toString():0,style: TextStyle(
+                        Text(goalValue.toString()==null?0.toString():goalValue.toString(),style: TextStyle(
                           fontFamily: 'DMMono',
                           fontSize: 20.0,
                           fontWeight: FontWeight.normal,

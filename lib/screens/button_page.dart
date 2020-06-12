@@ -95,7 +95,7 @@ class _ButtonPageState extends State<ButtonPage> with SingleTickerProviderStateM
   final firebaseDatabase  = Firestore.instance;
   void _saveButtonClk() async {
     Map<String, dynamic> row = {
-      DatabaseHelper.columnDatetime: DateTime.now().toString(),
+      DatabaseHelper.columnDatetime:  DateFormat("yyyy-MM-dd hh:mm:ss").format(selectedDate),
       DatabaseHelper.columnWeight: currentIntValue,
       DatabaseHelper.columnGoal: currentGoalValue, 
     };
