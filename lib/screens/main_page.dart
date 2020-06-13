@@ -67,6 +67,7 @@ class _MainPageState extends State<MainPage>
     setState(() {
       goalValue = prefs.getInt('intGoalValue');
       print("Goal Value is "+goalValue.toString());
+      //This is the Goal value
     });
   }
   
