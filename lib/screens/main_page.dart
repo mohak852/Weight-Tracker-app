@@ -45,7 +45,7 @@ class _MainPageState extends State<MainPage>
     for(int i=0;i<weightList.length;i++){
       newList[i] = weightList[i]["weight"];
     }
-    
+    print("+++++++++++++++++++++++++++");
     print(newList);
   }
   int intValue = 0;
