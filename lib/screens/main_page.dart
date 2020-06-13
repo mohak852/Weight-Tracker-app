@@ -89,7 +89,7 @@ class _MainPageState extends State<MainPage>
               child: Text("${widget.text}",style: TextStyle(
               fontFamily: 'DMMono',
               fontWeight: FontWeight.normal,
-              color: Colors.teal,
+              color: Colors.teal.shade900,
           ),),
             ),
         ),
