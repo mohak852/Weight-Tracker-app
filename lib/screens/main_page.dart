@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
@@ -15,15 +14,15 @@ class MainPage extends StatefulWidget {
   _MainPageState createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainPageState extends State<MainPage> 
+      with SingleTickerProviderStateMixin{
   List weightList= [];
-  List data = [];
+  List<double> newList = [];
   @override
   void initState() {
     initPrefs();
     getIntValuesSF();
     getGoalValuesSF();
-    getData();
     super.initState();
   }
   void updateGoal(){
@@ -32,6 +31,7 @@ class _MainPageState extends State<MainPage> {
       getIntValuesSF();
       print(intValue);
       print(goalValue);
+      getData();
     });
   }
   final DatabaseHelper databaseHelper = DatabaseHelper.instance;
@@ -43,14 +43,10 @@ class _MainPageState extends State<MainPage> {
   }
   void getData(){
     for(int i=0;i<weightList.length;i++){
-      data = weightList[i]["weight"];
-      setState(() {
-        data = weightList[i]["weight"];
-      });
+      newList[i] = weightList[i]["weight"];
     }
     
-    print("+++++++++++++++++++++++++++");
-    print(data);
+    print(newList);
   }
   int intValue = 0;
   getIntValuesSF() async {
@@ -69,14 +65,13 @@ class _MainPageState extends State<MainPage> {
     setState(() {
       goalValue = prefs.getInt('intGoalValue');
       print("Goal Value is "+goalValue.toString());
-
     });
   }
   
 
   
   AuthService authService = AuthService();
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -136,18 +131,21 @@ class _MainPageState extends State<MainPage> {
                     ),
                     Center(
                     child: Container(
-                padding: EdgeInsets.all(20.0),
-                height: 350.0,
-                width: double.infinity,
-                decoration: BoxDecoration(
+                    padding: EdgeInsets.all(20.0),
+                    height: 350.0,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
                     color: Colors.teal,
-                  borderRadius: BorderRadius.circular(20.0),
-                  boxShadow: [BoxShadow(
-                    blurRadius: 5.0,
-                    offset: Offset(0, 5),
-                    color: Colors.grey,
-                  ),],
-                ),
+                    borderRadius: BorderRadius.circular(20.0),
+                    boxShadow: [BoxShadow(
+                      blurRadius: 5.0,
+                      offset: Offset(0, 5),
+                      color: Colors.grey,
+                    ),],
+                    ),
+                  child: Sparkline(
+                    data: newList,
+                  ),
                     ),
                     ),
                   ]
