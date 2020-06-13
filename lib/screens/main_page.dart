@@ -47,6 +47,7 @@ class _MainPageState extends State<MainPage>
     }
     print("+++++++++++++++++++++++++++");
     print(newList);
+    print("---------------------------");
   }
   int intValue = 0;
   getIntValuesSF() async {
