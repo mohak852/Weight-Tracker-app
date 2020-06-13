@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -226,9 +225,7 @@ class _StatsPageState extends State<StatsPage> {
         averageWaterPerYear += log["weight"];
       }
     }
-
     print(totalDrinksPerYear);
-
     averageWaterPerYear =
         (averageWaterPerYear / totalDrinksPerYear.length).roundToDouble();
   }

@@ -44,6 +44,7 @@ dependencies:
   fl_chart:
   percent_indicator: ^2.1.4
   flutter_colorpicker: ^0.3.4
+  tuple:
 dev_dependencies:
   flutter_test:
     sdk: flutter

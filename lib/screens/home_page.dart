@@ -53,10 +53,10 @@ class _HomePageState extends State<HomePage> {
                         borderRadius: BorderRadius.circular(20.0),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 5,
-                            blurRadius: 7,
-                            offset: Offset(0, 3), // changes position of shadow
+                            color: Colors.grey,
+                            spreadRadius: 15,
+                            blurRadius: 9,
+                            offset: Offset(0, 2), // changes position of shadow
                           ),
                         ],
                     ),
