@@ -55,6 +55,7 @@ class _MainPageState extends State<MainPage>
     //Return int
     setState(() {
       intValue = prefs.getInt('intWeightValue');
+      //This is the current weight
     });
   }
 
