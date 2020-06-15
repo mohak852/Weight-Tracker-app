@@ -23,7 +23,10 @@ class _DrawerAppState extends State<DrawerApp> {
           ),
           ListTile(
             leading: Icon(Icons.arrow_drop_down_circle),
-          )
+          ),
+          ListTile(
+            leading: Icon(Icons.arrow_drop_down_circle),
+          ),
         ],
       ),
     );
