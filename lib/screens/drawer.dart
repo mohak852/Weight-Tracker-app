@@ -20,6 +20,9 @@ class _DrawerAppState extends State<DrawerApp> {
                 backgroundColor: Colors.black,
               ),
             ),
+          ),
+          ListTile(
+            leading: Icon(Icons.arrow_drop_down_circle),
           )
         ],
       ),
