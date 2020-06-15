@@ -16,7 +16,9 @@ class _DrawerAppState extends State<DrawerApp> {
 
             child: Container(
               color: Colors.black,
-              child: CircleAvatar(),
+              child: CircleAvatar(
+                backgroundColor: Colors.black,
+              ),
             ),
           )
         ],
