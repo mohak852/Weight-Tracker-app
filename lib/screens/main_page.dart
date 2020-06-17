@@ -98,6 +98,7 @@ class _MainPageState extends State<MainPage>
               ),
           ),
         ),
+        
         body: SingleChildScrollView(
           child: Container(
             padding: EdgeInsets.all(20.0),
@@ -151,7 +152,7 @@ class _MainPageState extends State<MainPage>
                       ),],
                       ),
                     child: Sparkline(
-                      data: newList,
+                      data: [1.0,0.1,5.0,8.0,2.0],
                     ),
                       ),
                       ),
